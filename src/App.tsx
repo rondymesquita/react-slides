@@ -1,32 +1,46 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
+import { useEffect } from 'react';
+import Reveal from 'reveal.js';
+import Markdown from 'reveal.js/plugin/markdown/markdown.esm.js';
+import 'reveal.js/dist/reveal.css'
+import 'reveal.js/dist/theme/black.css'
 import './App.css'
 
+import {html } from './index.md'
+
+function createMarkup(htmlString: string) {
+  return {__html: htmlString};
+}
+
+function Slide({htmlString}: {htmlString: string}) {
+  console.log(createMarkup(htmlString))
+  return <section dangerouslySetInnerHTML={createMarkup(htmlString)}></section>
+}
+
 function App() {
-  const [count, setCount] = useState(0)
+
+  const slidesRaw = html.split('<hr>')
+  console.log(slidesRaw)
+
+
+  useEffect(() => {
+
+    let deck = new Reveal({
+      // plugins: [ Markdown ]
+   })
+   deck.initialize();
+
+  }, [])
+
 
   return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div id="app">
+      <div className='reveal'>
+        <div className='slides'>
+          {slidesRaw.map((htmlString: string, index: number) => {
+            return <Slide key={index}  htmlString={htmlString}/>
+          })}
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </div>
   )
 }
