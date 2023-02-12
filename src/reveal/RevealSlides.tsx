@@ -8,7 +8,7 @@ function createMarkup(htmlString: string) {
 }
 
 function Slide({ htmlString }: { htmlString: string }) {
-  return <section dangerouslySetInnerHTML={createMarkup(htmlString)}></section>
+  return <section data-auto-animate dangerouslySetInnerHTML={createMarkup(htmlString)}></section>
 }
 
 export default function RevealSlides({ html }: any) {

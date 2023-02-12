@@ -13,10 +13,11 @@ export default function useHighlight() {
       const hljs = (await import('highlight.js')).default
       // @ts-ignore
       window.hljs = hljs
-      hljs.highlightAll()
 
       // @ts-ignore
       await import('highlightjs-line-numbers.js')
+      // @ts-ignore
+      hljs.highlightAll()
       // @ts-ignore
       hljs.initLineNumbersOnLoad()
     }

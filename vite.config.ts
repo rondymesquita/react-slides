@@ -4,6 +4,8 @@ import { plugin as mdPlugin, Mode } from 'vite-plugin-markdown'
 import DOMPurify from 'dompurify'
 import Prism from 'prismjs'
 import hljs from 'highlight.js'
+import markdownItAttrs from 'markdown-it-attrs';
+import markdownIt from 'markdown-it';
 
 function escapeHTML(unsafe) {
   return unsafe.replace(
@@ -12,12 +14,18 @@ function escapeHTML(unsafe) {
   )
 }
 
+const md = markdownIt({
+  html: true
+})
+md.use(markdownItAttrs)
+
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
     mdPlugin({
       mode: [Mode.HTML],
-      markdownIt: {
+      markdownIt: md
+      // markdownIt: {
         // highlight: function (code, lang) {
         //   if (lang && hljs.getLanguage(lang)) {
         //     try {
@@ -27,7 +35,7 @@ export default defineConfig({
         //   }
         //   return '' // use external default escaping
         // },
-      },
+      // },
     }),
     // , react()
   ],
