@@ -1,5 +1,12 @@
 import { useEffect } from 'react'
 
+import Prism from 'prismjs'
+
+// import 'prismjs/themes/prism-okaidia.css'
+// import 'prismjs/components/prism-jsx.js'
+// import 'prismjs/plugins/line-numbers/prism-line-numbers.js'
+// import 'prismjs/plugins/line-numbers/prism-line-numbers.css'
+
 export default function usePrism() {
   // @ts-ignore
   window.Prism = window.Prism || {}
@@ -12,8 +19,8 @@ export default function usePrism() {
 
     Prism.manual = true
     Prism = await import('prismjs')
-    await import('prismjs/plugins/line-numbers/prism-line-numbers')
-    console.log(Prism)
+    const p = await import('prismjs/plugins/line-numbers/prism-line-numbers')
+    console.log(p.default)
     Prism.highlightAll()
   }
 

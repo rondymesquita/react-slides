@@ -12,9 +12,9 @@ function Slide({ htmlString }: { htmlString: string }) {
 }
 
 export default function RevealSlides({ html }: any) {
-  useReveal()
-  // usePrism()
-  useHighlight()
+  // useReveal()
+  usePrism()
+  // useHighlight()
 
   useEffect(() => {})
   return (
