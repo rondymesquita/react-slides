@@ -6,9 +6,9 @@ import { plugin as mdPlugin, Mode } from 'vite-plugin-markdown'
 // import hljs from 'highlight.js'
 import markdownItAttrs from 'markdown-it-attrs';
 import markdownIt from 'markdown-it';
-import prism from 'markdown-it-prism';
+// import prism from 'markdown-it-prism';
 
-import "prismjs/components/prism-javascript"
+// import "prismjs/components/prism-javascript"
 // import 'prismjs/themes/prism.css'
 
 function escapeHTML(unsafe) {
